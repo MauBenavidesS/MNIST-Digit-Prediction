@@ -1,0 +1,33 @@
+Understanding Convolutional Kernels:
+- Convolutional kernels (or filters) are small matrices used to apply effects like blurring, sharpening, edge detection, etc., to an image.
+- First, the bottom-right kernel forward propagates a 1 only if it’s focused on a horizontal line segment. 
+The bottom-left kernel forward propagates a 1 only if it’s focused on a diagonal 
+line pointing upward and to the right.
+- It’s important to realize that this technique allows each kernel to learn a particular pattern and then search for the existence of that pattern somewhere in the image.
+
+Filters (Kernels) as Feature Detectors:
+- In a Convolutional Neural Network (CNN), each filter (or kernel) learns to detect specific features in the input data, such as edges, textures, or patterns.
+- During training, the filters are adjusted through backpropagation to minimize the loss function. This process tunes the filter weights to respond strongly to particular features in the data.
+
+Weight Sharing:
+- In CNNs, the same filter (or kernel) is applied across different parts of the input image. This is known as weight sharing.
+- During the convolution operation, the filter slides (or convolves) over the input image, applying the same set of weights to different spatial locations.
+- The number of filters determines how many different features the network can learn simultaneously.
+
+How Weights Learn Multiple Things Simultaneously
+- Multiple Filters:
+-- In each convolutional layer, there are multiple filters, each initialized with different weights. Each filter learns to detect different features independently.
+For example, one filter might learn to detect vertical edges, another might learn to detect horizontal edges, and another might learn to detect textures.
+- Hierarchical Learning:
+-- CNNs learn features hierarchically. Early layers learn low-level features (e.g., edges, corners), and deeper layers learn more complex, high-level features (e.g., shapes, objects).
+-- Each layer builds upon the features learned by the previous layers, enabling the network to learn a wide variety of features at different levels of abstraction.
+- Backpropagation and Gradient Descent:
+-- During training, the network performs forward propagation to compute the output and then uses backpropagation to compute the gradients of the loss with respect to each weight.
+-- Gradient descent is used to update the weights, allowing the network to learn multiple features simultaneously by adjusting the weights based on the gradients computed from the loss function.
+
+Practical Example
+- Consider an image classification task where you want to classify images of cats and dogs. During training:
+Early Layers: The filters in the early layers might learn to detect edges and textures common to both cats and dogs.
+Intermediate Layers: Filters might learn to detect parts of animals, such as eyes, fur patterns, and ears.
+Deeper Layers: Filters might learn to detect entire objects (e.g., a whole cat or dog).
+
